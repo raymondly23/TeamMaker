@@ -1,48 +1,94 @@
+'use strict';
+
+
 $(document).ready(init);
 
-function init(){
-		$('#add').click(adder);
-		$('.group').on('click','li', highlighter);
-		$('#groupContainer').on('click','.group', move);	
+var $display;
 
+function init() {
+	$display = $('#display')
 
-		function adder(){
-			var $names = $('#name');
-			var names = $names.val();
-			var num = $('#num').val();
-			var create = $('<li>'+names+'</li>').attr('dataNum', num);
-			$('#names').append(create);
-			document.getElementById('name').value = '';
-			document.getElementById('num').value = '';
-		}
+	$(document).on('keypress', keyPressed);
 
-		function highlighter(event){
-			event.stopPropagation();
-			$(this).addClass('selected');
-			sum -= data;
-			$('h2').remove();
-			$(this).append('<h2>$'+sum+'.00</h2>');
-		}
-
-		function move(event){
-			var sum = 0;
-			event.stopPropagation();
-			var $selected = $('.selected');
-			var data = parseInt($selected.attr('dataNum'));
-			$('.selected').detach();
-			$(this).append($selected);
-			$selected.removeClass('selected')
-			$('h2').remove();
-			if(!$selected.hasClass('selected')){sum += data;
-		}
-
-			$(this).append('<h2>$'+sum+'.00</h2>')
-	}
+	$('.num').click(clickNum);
+	$('#clear').click(clear);
+	$('#toggle').click(toggleNeg);
+	$('#percent').click(percent);
+	// $('.button').click(buttons);
+	$('#decimal').click(decimal);
 }
 
 
-	
+function keyPressed(event){
+	var key = String.fromCharCode(event.charCode);
+
+	if($.isNumeric(key)){
+	addNumToDisplay(key)
+	}
+	if(key ==='c'){
+		clear()
+	}
+}
+
+function buttons(){
+	var array = [];
+	var $()
+	if($('#add')){
+		$(display)
+	}
+	if($('#sub')){
+
+	}
+	if($('#divide')){
+
+	}
+	if($('#multi')){
+
+	}
 
 
 
 
+}
+
+function decimal(){
+	var currentValue = $display.text();
+	var dec = currentValue + '.';
+	if(!currentValue.includes('.')){
+		$(display).text(dec);
+	}
+}
+
+function toggleNeg(){
+	var currentValue = $display.text();
+	var invert = currentValue * -1;
+	$(display).text(invert);
+}
+
+function percent(){
+	var currentValue = $display.text();
+	var perc = currentValue / 100;
+	$(display).text(perc);
+}
+
+function clickNum(){
+	var num = $(this).text();
+	addNumToDisplay(num);
+}
+
+
+function addNumToDisplay(num){
+	var currentDisplay = $display.text()
+
+	if($display.text() === '0'){
+	$display.text(num)
+  }	
+	else {
+	$display.text(currentDisplay + num)
+  }
+}
+
+
+function clear(){
+	$display.text(0)
+}
