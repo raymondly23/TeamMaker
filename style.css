@@ -1,0 +1,33 @@
+body{background-color:aliceblue;
+	text-align: center;}
+
+
+#container{display: inline-block;
+			float: center;
+			border:2px solid black;
+			text-align: center;
+			width: 25%;
+		}
+
+
+
+.selected{color: red;
+		font-size: 30px;
+
+
+
+}
+
+li{padding: 10px}
+
+
+#group1,#group2,#group3{
+
+	display: inline-block;
+	height: 25%;
+	width: 25%;
+	border: 2px solid black;
+}
+
+
+#name, #num, #add{background-color:grey;}
